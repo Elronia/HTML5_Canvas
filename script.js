@@ -11,6 +11,7 @@ let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
 let hue = 0;
+let direction = true;
 
 function draw(e) {
     if(!isDrawing) return; //stop the function from running when they are not moused down
@@ -25,7 +26,21 @@ function draw(e) {
     // lastX = e.offsetX;
     // lastY = e.offsetY;
     [lastX, lastY] = [e.offsetX, e.offsetY];
+
     hue++;
+    if (hue >= 360) {
+        hue = 0;
+    }
+
+    if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+        direction = !direction;
+    }
+    
+    if (direcction) {
+        ctx.lineWidth++;
+    } else {
+        ctx.lineWidth--;
+    }
 }
 
 canvas.addEventListener('mousedown', (e) => {
